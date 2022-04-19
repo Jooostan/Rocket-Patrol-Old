@@ -28,6 +28,6 @@ let keyF, keyR, keyLEFT, keyRIGHT, keyN, keyE, keyM;
     - 5  Pts Allow the player to contorl the Rocket after it's fired
     - 5  Pts Implement the 'FIRE' UI text from the original game (changed to BARK to match the theme)
 
-
+ 
 */
  
