@@ -6,19 +6,34 @@ class Rocket extends Phaser.GameObjects.Sprite {
       // add object to existing scene
       scene.add.existing(this);         // add to existing displayList, updateList
       this.isFiring = false;            // track rocket's firing status
-      this.moveSpeed = 2;               // pixels per frame
-      this.sfxRocket = scene.sound.add('sfx_rocket'); // add rocket sfx
+      this.moveSpeed = 3;               // pixels per frame
+      this.sfxRocket = scene.sound.add('bark'); // add rocket sfx
+      this.sfxRocket.volume = 0.25;
+
+      // initialize 'FIRE' UI
+      let fireConfig = {
+        fontFamily: 'Courier',
+        fontSize: '28px',
+        backgroundColor: '#F3B141',
+        color: '#843605',
+        align: 'right',
+        padding: {
+            top: 5,
+            bottom: 5,
+        },
+        fixedWidth: 100
+    }
     }
 
     update() {
         // left/right movement
-        if(!this.isFiring) {
-            if(keyLEFT.isDown && this.x >= borderUISize + this.width) {
-                this.x -= this.moveSpeed;
-            } else if(keyRIGHT.isDown && this.x <= game.config.width - borderUISize - this.width) {
-                this.x += this.moveSpeed;
-            }
+        // if(!this.isFiring) {
+        if(keyLEFT.isDown && this.x >= borderUISize + this.width) {
+            this.x -= this.moveSpeed;
+        } else if(keyRIGHT.isDown && this.x <= game.config.width - borderUISize - this.width) {
+            this.x += this.moveSpeed;
         }
+        // }
 
         // fire button
         if(Phaser.Input.Keyboard.JustDown(keyF) && !this.isFiring) {
@@ -40,6 +55,6 @@ class Rocket extends Phaser.GameObjects.Sprite {
 
     reset() {
         this.isFiring = false;
-        this.y = game.config.height - borderUISize - borderPadding;
+        this.y = game.config.height - borderUISize - borderPadding-15;
     }
   }
